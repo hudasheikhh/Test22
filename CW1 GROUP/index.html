@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title> Tuition </title>
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <header>
+            <h1 v-text="sitename"> </h1>
+        </header>
+        <main>
+
+            <fieldset>
+
+
+                <figure>
+                    <img v-bind:src="classes.image">
+                </figure>
+                <p> Subject: {{classes.subject}}</p>
+                <p> Location: {{classes.location}}</p>
+                <p> Price: {{classes.price}}</p>
+                <p> spaces: {{classes.spaces}}</p>
+                <p> Duration: 20 mins</p>
+                <button v-on:click="addToCart">
+                     Add to Cart
+                </button>
+
+
+            </fieldset>
+        </main>
+
+    </div>
+    <script type="text/javascript">
+        var webstore = new Vue({
+            el: '#app',
+            data: {
+                sitename: 'Details',
+                classes: {
+                    id: 1001,
+                    subject: "Math",
+                    location: "London",
+                    price: 100,
+                    spaces: 10
+                },
+                cart: [],
+
+            },
+            methods: {
+                addToCart: function() {
+                    if (this.classes.spaces > 0) {
+                        this.classes.spaces -= 1;
+                        this.cart.push(this.classes.id);
+                    }
+                }
+            }
+
+
+        });
+    </script>
+
+
+</body>
+
+</html>
